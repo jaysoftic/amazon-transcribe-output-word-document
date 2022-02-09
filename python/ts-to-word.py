@@ -208,10 +208,10 @@ def write_transcribe_text(output_table, sentiment_enabled, analytics_mode, speec
 
         # Then do each word with confidence-level colouring
         text_index = 1
-        live_issue = False
+        live_issue = False        
         for eachWord in segment.segmentConfidence:
             # Are we at the start of an issue?
-            if len(next_issue) > 0:
+            if len(next_issue) > 0 and live_issue == False:
                 if (next_issue["Begin"] == 0) or (next_issue["Begin"] == text_index):
                     # If so, start the highlighting run
                     run = row_cells[COL_CONTENT + content_col_offset].paragraphs[0].add_run(" [ISSUE]")
